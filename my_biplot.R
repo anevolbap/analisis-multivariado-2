@@ -43,18 +43,19 @@ my_biplot <- function (data) {
     ratio <- max(hlim1 / glim1, hlim2 / glim2) / expand
 
     ## Plot: variables
-    colores <- 1:(ncol(data))+10
+    colores <- rep(RColorBrewer::brewer.pal(8, "Accent"), length = ncol(data)) 
+#    colores <- 1:(ncol(data)) + 10
     plot(H2, axes = FALSE, type = "n",
          xlab = "", ylab = "",
          xlim = glim1 * ratio, ylim = glim2 * ratio)
     arrows(0, 0, angle = 15, length = 0.08,
            x1 = H2[, 1], y1 = H2[, 2],
-           lwd = 2,
+           lwd = 4,
            col = colores)
     axis(3)
     axis(4)
     text(H2, labels = colnames(data), pos = 2)
-    legend("bottomleft", legend = colnames(data), col = colores, pch = 20)
+    legend("bottomleft", legend = colnames(data), col = colores, pch = 16)
     abline(h=0, lty = 3)
     abline(v=0, lty = 3)
 }
